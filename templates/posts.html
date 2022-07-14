@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}  
+{% load static %} 
+<section class="content">
+    <section class="post_form">
+        <form action="/" method="POST">
+          {% csrf_token %}
+            <input type="text" name="name" placeholder="Name" required />
+            <textarea name="body" placeholder="Tell us anything" required></textarea>
+            <input type="submit" value="Post" />
+        </form>
+    </section>
+
+    <section class="posts">
+        {% if tweets.count == 0 %}
+        <p class="p-3">There is no tweet now.</p>
+        {% else %}
+        <ul>
+          {% for post in posts %} 
+          <li>
+            <img class="menu_icon js-menu-icon" src="{% static 'img/menu.png' %}" />
+            <div class="menu">
+                <a href="/delete/{{ post.id }}/">Delete</a>
+            </div>
+            <div class="logo">
+             <img src="{% static 'img/profile-user.png' %}" />
+            </div>  
+             <div class="name_body">
+                <div class="name">{{ post.name }}</div>
+                <div class="datetime">{{ post.created_at }}</div>
+                <p>{{ post.body }}</p>
+              </div>
+            </li>
+             {% endfor %}
+            </ul>
+             {% endif %}
+             </section>
+             <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+              <script src="{% static 'js/posts.js' %}"></script>
+            </section>
+            {% endblock%}
