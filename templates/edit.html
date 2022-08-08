@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<section class="home">
+  <div class="page">
+    <div class="main">
+      <div class="main-header">
+        <img src="/static/img/s.jpeg" class="logo" />
+        <h1>EDIT</h1>
+      </div>
+      <div class="tweet_post">
+        <div class="icon">
+          <img src="/static/img/user.png" />
+        </div>
+        <div class="contentt">
+          <form
+            class="editform"
+            action="/edit/{{post.id}}/"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %}
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value="{{post.name}}"
+              required
+              col
+            />
+            <textarea
+              name="body"
+              placeholder="Do the changes"
+              rows="5"
+              cols="5"
+              col
+            >
+{{post.body}}</textarea
+            >
+            {% if post.image %}
+            <img
+              src="{{post.image.url}}"
+              alt=""
+              class="postimage"
+              style="height: 250px; width: 400px"
+            /><br /><br />
+            {% endif %}
+            <input
+              type="file"
+              name="image"
+              class="form-control form-control-sm"
+              value="{{post.image.url}}"
+            />
+            <div class="editfooter">
+              <button class="update" type="submit" href="/">Update</button>
+              <button class="cancel" href="{url 'index'}">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
