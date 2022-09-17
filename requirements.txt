@@ -64,7 +64,7 @@ monotonic==1.6
 msrest==0.6.21
 multidict==5.1.0
 networkx==2.5.1
-oauthlib==3.1.1
+oauthlib==3.2.1
 oscrypto==1.2.1
 parso==0.8.2
 passlib==1.7.4
